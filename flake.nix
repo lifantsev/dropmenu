@@ -23,6 +23,9 @@
             environment.systemPackages = with pkgs; [ dropmenu dropmenu-ui ];
         };
 
-        homeManagerModules = {};
+        homeManagerModules.default = hmargs: {
+            options.programs.dropmenu = import ./options.nix hmargs;
+            config = import ./config.nix hmargs;
+        };
     };
 }

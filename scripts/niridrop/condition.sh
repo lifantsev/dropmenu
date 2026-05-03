@@ -1,0 +1,1 @@
+[[ -n "$NIRI_SOCKET" ]]

@@ -1,0 +1,1 @@
+pypr show dropmenu-ui
