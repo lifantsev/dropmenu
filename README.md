@@ -52,7 +52,7 @@ Populate `$XDG_CONFIG_HOME/dropmenu/show.sh` and `hide.sh` with bash scripts tha
 
 ### flake
 
-This flake exposes a home manager module that makes this easy:
+This flake exposes a home manager module that generates these scripts:
 
 ``` nix
 # home.nix
@@ -60,13 +60,13 @@ This flake exposes a home manager module that makes this easy:
 imports = [ inputs.dropmenu.homeManagerModules.default ];
 
 programs.dropmenu = {
-    enable = true; # this will populate show.sh & hide.sh
+    enable = true;
     show = "pypr show dropmenu-ui";
     hide = "pypr hide dropmenu-ui";
 };
 ```
 
-To use the [premade scripts](https://github.com/lifantsev/dropmenu/tree/main/scripts) in this repository, use the `dropdownProgram` option. It will generate show/hide scripts tailored to the selected dropdown programs. If you set multiple, the generated script will check which window manager is currently running to decide which integration to use.
+To use the [premade scripts](https://github.com/lifantsev/dropmenu/tree/main/scripts) in this repository, use the `dropdownProgram` option. For every window manager, choose the dropdown program you use with it. If you set multiple, the generated script will check which window manager is currently running to decide which integration to use.
 ``` nix
 programs.dropmenu.dropdownProgram = {
     niri = "niridrop";
@@ -74,7 +74,7 @@ programs.dropmenu.dropdownProgram = {
 };
 ```
 
-If you are using [niridrop](https://github.com/lifantsev/niridrop) and its flake, you can enable this option to automatically add `dropmenu-ui` as a dropdown window to your config:
+If you are using [niridrop](https://github.com/lifantsev/niridrop) and its flake, you can enable this option to add `dropmenu-ui` as a dropdown window:
 ``` nix
 programs.dropmenu.integrations.niridrop = true;
 ```
