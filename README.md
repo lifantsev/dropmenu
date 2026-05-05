@@ -46,7 +46,7 @@ Note that both scripts optionally depend on [lg](https://github.com/lifantsev/lg
 
 ## Configuration
 
-In order to work properly, `dropmenu` needs to know how to use whatever dropdown program you are using to show and hide its ui.
+In order to work properly, `dropmenu` needs to know how to talk to whatever dropdown program you are using.
 
 Populate `$XDG_CONFIG_HOME/dropmenu/show.sh` and `hide.sh` with bash scripts that will show and hide the ui. (See [examples](https://github.com/lifantsev/dropmenu/tree/main/scripts)).
 
@@ -70,11 +70,11 @@ To use the [premade scripts](https://github.com/lifantsev/dropmenu/tree/main/scr
 ``` nix
 programs.dropmenu.dropdownProgram = {
     niri = "niridrop";
-    hyprland = "pyprland"; # this will create a script that works on both niri and hyprland
+    hyprland = "pyprland"; # this will create scripts that work on both niri and hyprland
 };
 ```
 
-If you are using [niridrop](https://github.com/lifantsev/niridrop)'s flake, you can enable an this option to automatically add `dropmenu-ui` as a dropdown window to your config:
+If you are using [niridrop](https://github.com/lifantsev/niridrop) and its flake, you can enable this option to automatically add `dropmenu-ui` as a dropdown window to your config:
 ``` nix
 programs.dropmenu.integrations.niridrop = true;
 ```
@@ -87,8 +87,8 @@ This is resolved using a special character '\*'. If '\*' is found at the end of 
 
 So if we run `echo 'bernard*' | dropmenu --allow-new`, here are the cases:
 ```
-bed      -> bernard*
-bed*     -> bed
-bernard* -> bernard
-new      -> new
+user enters: bed      -> bernard*
+user enters: bed*     -> bed
+user enters: bernard* -> bernard
+user enters: new      -> new
 ```
