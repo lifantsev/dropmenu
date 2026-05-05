@@ -8,15 +8,17 @@ A dmenu-like program that uses a dropdown terminal with fzf as its ui. Can work 
 cat options.txt | dropmenu
 ```
 
-Pipe a list of options to the tool, and it will show fzf in a dropdown terminal to let the user select an option.
+Pipe in a list of options, and then choose one using fzf in a dropdown terminal.
 
-- --help (-h) : print a help menu
-- --secure : disable logging
-- --allow-new : allow the user to choose something not on the list of options ([details](#--allow-new))
-- --print-query : print two lines - 1st is the user's typed query, 2nd is the chosen option
-- --fast : close the ui asynchronously (can cause problems if called in quick repetition)
+```
+--help (-h)   : print a help menu
+--secure      : disable logging
+--allow-new   : allow the user to choose something not on the list of options (see details farther below)
+--print-query : print two lines - 1st is the user's typed query, 2nd is the chosen option
+--fast        : close the ui asynchronously (can cause problems if called in quick repetition)
+```
 
-## Installation
+# Installation
 
 This program has two components: a cli interface `dropmenu`, and a ui `dropmenu-ui` that should be running in a dropdown terminal, waiting to be shown by a call to `dropmenu`.
 
@@ -44,6 +46,28 @@ Note that both scripts optionally depend on [lg](https://github.com/lifantsev/lg
 
 ## Configuration
 
+In order to work properly, `dropmenu` needs to know how to use whatever dropdown program you are using to show and hide its ui.
+
+Populate `$XDG_CONFIG_HOME/dropmenu/show.sh` and `hide.sh` with bash scripts that will show and hide the ui.
+
+### flake
+
+This flake exposes a home manager module that makes this easy:
+
+``` nix
+# home.nix
+
+imports = [ inputs.dropmenu.homeManagerModules.default ];
+
+programs.dropmenu = {
+    enable = true; # this will populate show.sh & hide.sh
+    show = "pypr show dropmenu-ui";
+    hide = "pypr hide dropmenu-ui";
+};
+```
+
+
+
 ## --allow-new
 
 The fuzzy nature of fzf causes some ambiguity here. What to do if one of the options is 'bernard' but the user wants to enter 'bed'? There is no way to distinguish between a user that wants to type 'bed' and one that typed the same characters to fuzzy find 'bernard'.
@@ -52,8 +76,8 @@ This is resolved using a special character '\*'. If '\*' is found at the end of 
 
 So if we run `echo 'bernard*' | dropmenu --allow-new`, here are the cases:
 ```
-'new'      -> 'new'
-'bed'      -> 'bernard*'
-'bed*'     -> 'bed'
-'bernard*' -> 'bernard'
+bed      -> bernard*
+bed*     -> bed
+bernard* -> bernard
+new      -> new
 ```
