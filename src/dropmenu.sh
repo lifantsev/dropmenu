@@ -5,6 +5,9 @@
 export LGSTEM=dropmenu
 export LGSPEC=cli
 
+if [ ! -f "$XDG_CONFIG_HOME/dropmenu/show.sh" ]; then echo "error: need a script to show the ui @ [$XDG_CONFIG_HOME/dropmenu/show.sh]" ; exit 1 ; fi
+if [ ! -f "$XDG_CONFIG_HOME/dropmenu/hide.sh" ]; then echo "error: need a script to hide the ui @ [$XDG_CONFIG_HOME/dropmenu/hide.sh]" ; exit 1 ; fi
+
 flag_help=0
 flag_secure=0
 uiflag_allow_new=0
