@@ -48,7 +48,7 @@ Note that both scripts optionally depend on [lg](https://github.com/lifantsev/lg
 
 In order to work properly, `dropmenu` needs to know how to use whatever dropdown program you are using to show and hide its ui.
 
-Populate `$XDG_CONFIG_HOME/dropmenu/show.sh` and `hide.sh` with bash scripts that will show and hide the ui.
+Populate `$XDG_CONFIG_HOME/dropmenu/show.sh` and `hide.sh` with bash scripts that will show and hide the ui. (See [examples](https://github.com/lifantsev/dropmenu/tree/main/scripts)).
 
 ### flake
 
@@ -66,7 +66,18 @@ programs.dropmenu = {
 };
 ```
 
+To use the [premade scripts](https://github.com/lifantsev/dropmenu/tree/main/scripts) in this repository, use the `dropdownProgram` option. It will generate show/hide scripts tailored to the selected dropdown programs. If you set multiple, the generated script will check which window manager is currently running to decide which integration to use.
+``` nix
+programs.dropmenu.dropdownProgram = {
+    niri = "niridrop";
+    hyprland = "pyprland"; # this will create a script that works on both niri and hyprland
+};
+```
 
+If you are using [niridrop](https://github.com/lifantsev/niridrop)'s flake, you can enable an this option to automatically add `dropmenu-ui` as a dropdown window to your config:
+``` nix
+programs.dropmenu.integrations.niridrop = true;
+```
 
 ## --allow-new
 
