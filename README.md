@@ -18,7 +18,7 @@ Pipe in a list of options, and then choose one using fzf in a dropdown terminal.
 --fast        : close the ui asynchronously (can cause problems if called in quick repetition)
 ```
 
-# Installation
+## Installation
 
 This program has two components: a cli interface `dropmenu`, and a ui `dropmenu-ui` that should be running in a dropdown terminal, waiting to be shown by a call to `dropmenu`.
 
