@@ -61,20 +61,18 @@ imports = [ inputs.dropmenu.homeManagerModules.default ];
 
 programs.dropmenu = {
     enable = true;
+
     show = "pypr show dropmenu-ui";
     hide = "pypr hide dropmenu-ui";
 };
 ```
 
-To use the [premade scripts](https://github.com/lifantsev/dropmenu/tree/main/scripts) in this repository, use the `dropdownProgram` option. For every window manager, choose the dropdown program you use with it. If you set multiple, the generated script will check which window manager is currently running to decide which integration to use.
-``` nix
-programs.dropmenu.dropdownProgram = {
-    niri = "niridrop";
-    hyprland = "pyprland"; # this will create scripts that work on both niri and hyprland
-};
+There are also some premade show/hide scripts you can use by setting the `showhide` option. See legal option values [here](https://github.com/lifantsev/niridrop/blob/main/options.nix).
+```nix
+programs.dropmenu.showhide = "niridrop"; # populate show & hide with scripts for niridrop
 ```
 
-If you are using [niridrop](https://github.com/lifantsev/niridrop) and its flake, you can enable this option to add `dropmenu-ui` as a dropdown window:
+If you are using [niridrop](https://github.com/lifantsev/niridrop) and its flake, you can enable this option to register `dropmenu-ui` as a dropdown window:
 ``` nix
 programs.dropmenu.integrations.niridrop = true;
 ```

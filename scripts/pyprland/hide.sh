@@ -1,1 +1,0 @@
-pypr hide dropmenu-ui

@@ -21,24 +21,10 @@
 
     integrations.niridrop = lib.mkEnableOption "usage of the niridrop module to create the configuration for the dropmenu-ui dropdown";
 
-    dropdownProgram = lib.mkOption {
-        description = "this sets up the show/hide scripts: per window manager, which dropdown program to use to show the ui (if multiple are set, will detect which wm is currently running)";
-        default = {};
-
-        type = lib.types.submodule { options = {
-            niri = lib.mkOption {
-                description = "when using niri: which dropdown program to use to show/hide the ui window";
-                type = lib.types.enum [ "none" "niridrop" ];
-                default = "none";
-                example = "niridrop";
-            };
-
-            hyprland = lib.mkOption {
-                description = "when using hyprland: which dropdown program to use to show/hide the ui window";
-                type = lib.types.enum [ "none" "pyprland" ];
-                default = "none";
-                example = "pyprland";
-            };
-        };};
+    showhide = lib.mkOption {
+        description = "set up show/hide scripts using the premade scripts for this dropdown program";
+        type = lib.types.enum [ "" "niridrop" "pyprland" ];
+        default = "";
+        example = "niridrop";
     };
 }
