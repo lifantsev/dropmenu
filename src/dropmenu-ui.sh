@@ -58,7 +58,7 @@ while true; do
     lg F "got input from infile"
 
     lg . "showing menu-ui"
-    . "$show_sh"
+    . "$show_sh" &
 
     separator="$(echo "$input" | head -n 1)"
     lg . "got separator[$separator]"
@@ -104,7 +104,10 @@ while true; do
     fi
 
     lg . "hiding menu-ui"
-    . "$hide_sh"
+    if (( flag_fast ));
+    then . "$hide_sh" &
+    else . "$hide_sh"
+    fi
 
     lg F "loop end: returning result to out_fifo: $(echo "$result" | tr '\n' '$')"
 
