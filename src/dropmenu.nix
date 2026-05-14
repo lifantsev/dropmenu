@@ -1,6 +1,7 @@
 { self, nixpkgs, lg, ... }: system: let
     pkgs = import nixpkgs { inherit system; };
-    lg_pkg = lg.packages.${system}.default;
+    lga = lg.packages.${system}.lga;
+    lge = lg.packages.${system}.lge;
     dropmenu-ui_pkg = self.packages.${system}.dropmenu-ui;
 in pkgs.resholve.writeScriptBin "dropmenu"
 {
@@ -8,12 +9,13 @@ in pkgs.resholve.writeScriptBin "dropmenu"
 
     execer = [
         "cannot:${dropmenu-ui_pkg}/bin/dropmenu-ui"
-        "cannot:${lg_pkg}/bin/lg"
+        "cannot:${lga}/bin/lga"
+        "cannot:${lge}/bin/lge"
     ];
 
     inputs = [
         pkgs.coreutils
-        lg_pkg
+        lga lge
         dropmenu-ui_pkg
     ];
 } (builtins.readFile ./dropmenu.sh)

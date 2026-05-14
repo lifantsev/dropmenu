@@ -1,20 +1,22 @@
 { nixpkgs, lg, ... }: system: let
     pkgs = import nixpkgs { inherit system; };
-    lg_pkg = lg.packages.${system}.default;
+    lga = lg.packages.${system}.lga;
+    lge = lg.packages.${system}.lge;
 in pkgs.resholve.writeScriptBin "dropmenu-ui"
 {
     interpreter = "${pkgs.bash}/bin/bash";
 
     execer = [
         "cannot:${pkgs.fzf}/bin/fzf"
-        "cannot:${lg_pkg}/bin/lg"
+        "cannot:${lga}/bin/lga"
+        "cannot:${lge}/bin/lge"
     ];
 
     keep.source = [ "$show_sh" "$hide_sh" ];
 
     inputs = [
         pkgs.coreutils
-        lg_pkg
+        lga lge
         pkgs.fzf
         pkgs.gnugrep
         pkgs.gnused

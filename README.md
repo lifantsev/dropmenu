@@ -42,7 +42,7 @@ environment.systemPackages = with inputs.dropmenu.packages; [
 
 If you are not a nix user, you can download the [shellscripts](https://github.com/lifantsev/dropmenu/tree/main/src), add shebangs, and install them however you prefer (maybe put it in ~/.local/bin or create an alias).
 
-Note that both scripts optionally depend on [lg](https://github.com/lifantsev/lg). If you don't want to install it, just use `sed -i '/ *lg / d' <file.sh>` to remove all calls to it.
+Note that both scripts optionally depend on [lg logging utils](https://github.com/lifantsev/lg). If you don't want to install them remove the calls to `lga` and `lge`.
 
 ## Configuration
 

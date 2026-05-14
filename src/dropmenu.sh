@@ -14,16 +14,16 @@ uiflag_allow_new=0
 uiflag_print_query=0
 uiflag_fast=0
 
-lg start
+lga start
 
 while [ -n "${1:-}" ]; do
     case "$1" in
-        "-h"|"--help") flag_help=1; lg . "set help: $flag_help" ;;
-        "--secure") flag_secure=1; lg . "set flag_secure: $flag_secure NOTE: LOGGING WILL DISABLE";;
+        "-h"|"--help") flag_help=1; lga . "set help: $flag_help" ;;
+        "--secure") flag_secure=1; lga . "set flag_secure: $flag_secure NOTE: LOGGING WILL DISABLE";;
 
-        "--fast") uiflag_fast=1; lg . "set uiflag_fast[$uiflag_fast]" ;;
-        "--allow-new") uiflag_allow_new=1; lg . "set uiflag_allow_new: $uiflag_allow_new";;
-        "--print-query") uiflag_print_query=1; lg . "set uiflag_print_query: $uiflag_print_query";;
+        "--fast") uiflag_fast=1; lga . "set uiflag_fast[$uiflag_fast]" ;;
+        "--allow-new") uiflag_allow_new=1; lga . "set uiflag_allow_new: $uiflag_allow_new";;
+        "--print-query") uiflag_print_query=1; lga . "set uiflag_print_query: $uiflag_print_query";;
     esac
 
     shift
@@ -49,7 +49,7 @@ if (( flag_help )); then
     exit
 fi
 
-lg I "writing flag & options to in_fifo[$in_fifo_path]"
+lga I "writing flag & options to in_fifo[$in_fifo_path]"
 separator="MENU FLAG OPTION SEPARATOR $(mktemp --dry-run XXXXXXXXXXXXXXXXXXXXXXXXXXXXX)"
 echo "$(
     echo "$separator"
@@ -61,9 +61,9 @@ echo "$(
     cat # pass stdin
 )" > "$in_fifo_path"
 
-lg I "awaiting result from out_fifo[$out_fifo_path]"
+lga I "awaiting result from out_fifo[$out_fifo_path]"
 result="$(cat "$out_fifo_path")"
-lg . "got result[$(echo "$result" | tr '\n' '$')], printing"
+lga . "got result[$(echo "$result" | tr '\n' '$')], printing"
 echo "$result"
 
-lg finish
+lga finish
