@@ -42,7 +42,7 @@ if (( flag_help )); then
     echo ""
     echo "-h | --help      : print this help menu"
     echo '--secure         : disable logging'
-    echo "--fast           : don't wait for menu-ui to close before exiting"
+    echo "--fast           : don't wait for ui to close before exiting"
     echo "    NOTE: only one of the below may be passed"
     echo "--allow-new      : allow the user to create their own option instead of choosing from the presented ones"
     echo "--print-query    : 1st line of stdout is exactly what the user typed, 2nd line is the exact choice (usual output)"

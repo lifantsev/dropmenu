@@ -57,7 +57,7 @@ while true; do
     input="$(cat "$in_fifo_path")"
     lga F "got input from infile"
 
-    lga . "showing menu-ui"
+    lga . "showing dropmenu-ui"
     . "$show_sh" &
 
     separator="$(echo "$input" | head -n 1)"
@@ -103,7 +103,7 @@ while true; do
         result="$(echo "$list" | fzf || :)"
     fi
 
-    lga . "hiding menu-ui"
+    lga . "hiding dropmenu-ui"
     if (( flag_fast ));
     then . "$hide_sh" &
     else . "$hide_sh"
