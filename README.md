@@ -13,7 +13,7 @@ Pipe in a list of options, and then choose one using fzf in a dropdown terminal.
 ```
 --help (-h)   : print a help menu
 --secure      : disable logging
---allow-new   : allow the user to choose something not on the list of options (see details farther below)
+--allow-new   : allow the user to choose something not on the list of options (details below)
 --print-query : print two lines - 1st is the user's typed query, 2nd is the chosen option
 --fast        : close the ui asynchronously (can cause problems if called in quick repetition)
 ```
