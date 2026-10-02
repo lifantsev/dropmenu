@@ -2,6 +2,8 @@
 
 A dmenu-like program that uses a dropdown terminal with fzf as its ui. Can work with all window managers and any dropdown program.
 
+- [usage](#usage), [installation](#installation), [configuration](#configuration)
+
 <img width="1682" height="1126" alt="dropmenu-demo" src="https://github.com/user-attachments/assets/7232d3e9-0b5b-4414-b530-b41e83210ee8" />
 
 ## Usage
@@ -83,7 +85,7 @@ programs.dropmenu.integrations.niridrop = true;
 
 The fuzzy nature of fzf causes some ambiguity here. What to do if one of the options is 'bernard' but the user wants to enter 'bed'? There is no way to distinguish between a user that wants to type 'bed' and one that typed the same characters to fuzzy find 'bernard'.
 
-This is resolved using a special character '\*'. If '\*' is found at the end of user input, it is removed and the remaining string is returned as output, regardless of if it matched any options.
+This is resolved using a special character `*`. If `*` is found at the end of user input, it is removed and the remaining string is returned as output, regardless of if it matched any options.
 
 So if we run `echo 'bernard*' | dropmenu --allow-new`, here are the cases:
 ```
