@@ -2,6 +2,8 @@
 
 A dmenu-like program that uses a dropdown terminal with fzf as its ui. Can work with all window managers and any dropdown program.
 
+<img width="1682" height="1126" alt="dropmenu-demo" src="https://github.com/user-attachments/assets/7232d3e9-0b5b-4414-b530-b41e83210ee8" />
+
 ## Usage
 
 ```
